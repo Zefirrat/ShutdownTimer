@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ShutdownTimer"
         mc:Ignorable="d"
         Title="Shutdown Timer" Height="150" Width="275">
+    <Window.DataContext><local:MainWindowViewModel></local:MainWindowViewModel></Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
@@ -18,15 +19,15 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <DockPanel Grid.Column="0" VerticalAlignment="Center" Margin="10">
-                <TextBox Text="" Height="25" Width="50" Name="HoursTextBox" TextAlignment="Center"></TextBox>
+                <TextBox Text="{Binding Hour}" Height="25" Width="50" Name="HoursTextBox" TextAlignment="Center"></TextBox>
                 <Label Content="h"></Label>
             </DockPanel>
             <DockPanel Grid.Column="1" VerticalAlignment="Center" Margin="10">
-                <TextBox Text="" Height="25" Width="50" Name="MinutesTextBox" TextAlignment="Center"></TextBox>
+                <TextBox Text="{Binding Minute}" Height="25" Width="50" Name="MinutesTextBox" TextAlignment="Center"></TextBox>
                 <Label Content="m"></Label>
             </DockPanel>
             <DockPanel Grid.Column="2" VerticalAlignment="Center" Margin="10">
-                <TextBox Text="" Height="25" Width="50" Name="SecondsTextBox" TextAlignment="Center"></TextBox>
+                <TextBox Text="{Binding Second}" Height="25" Width="50" Name="SecondsTextBox" TextAlignment="Center"></TextBox>
                 <Label Content="s"></Label>
             </DockPanel>
         </Grid>
@@ -36,8 +37,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Click="Button1_Click" Content="Shutdown" Grid.Column="0" Width="100" Height="25"></Button>
-            <Button Click="Button2_Click" Content="Abort" Grid.Column="1" Width="100" Height="25"></Button>
+            <Button Command="{Binding ShutdownCommand}" Content="Shutdown" Grid.Column="0" Width="100" Height="25"></Button>
+            <Button Command="{Binding AbortCommand}" Content="Abort" Grid.Column="1" Width="100" Height="25"></Button>
         </Grid>
     </Grid>
 </Window>
