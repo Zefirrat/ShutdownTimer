@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SupportingClasses\BooleanToVisibilityConverter.cs" />
+    <Compile Include="SupportingClasses\SettingsProvider.cs" />
+    <Compile Include="SupportingClasses\CountDownTimer.cs" />
+    <Compile Include="ViewModels\SettingsContentViewModel.cs" />
     <Compile Include="Views\SettingsContent.xaml.cs">
       <DependentUpon>SettingsContent.xaml</DependentUpon>
     </Compile>
@@ -70,7 +74,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExecuteCommand.cs" />
+    <Compile Include="SupportingClasses\ExecuteCommand.cs" />
     <Compile Include="Views\MainContent.xaml.cs">
       <DependentUpon>MainContent.xaml</DependentUpon>
     </Compile>

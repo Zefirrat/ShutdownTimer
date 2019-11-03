@@ -5,15 +5,20 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShutdownTimer"
              xmlns:viewModels="clr-namespace:ShutdownTimer.ViewModels"
+             xmlns:supportingclasses="clr-namespace:ShutdownTimer.SupportingClasses"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.DataContext>
         <viewModels:MainContentViewModel></viewModels:MainContentViewModel>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <supportingclasses:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></supportingclasses:BooleanToVisibilityConverter>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Row="0">
             <Grid.ColumnDefinitions>
@@ -43,6 +48,8 @@
             <Button Command="{Binding ShutdownCommand}" Content="Shutdown" Grid.Column="0" Width="100" Height="25"></Button>
             <Button Command="{Binding AbortCommand}" Content="Abort" Grid.Column="1" Width="100" Height="25"></Button>
         </Grid>
-
+<Grid Row="2">
+    <Label Visibility="{Binding DoShowTimer, Converter={StaticResource  BooleanToVisibilityConverter}}" Content="{Binding TimerText}"></Label>
+</Grid>
     </Grid>
 </UserControl>

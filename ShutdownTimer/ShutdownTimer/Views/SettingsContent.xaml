@@ -4,9 +4,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ShutdownTimer.Views"
+             xmlns:viewmodels="clr-namespace:ShutdownTimer.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <viewmodels:SettingsContentViewModel></viewmodels:SettingsContentViewModel>
+    </UserControl.DataContext>
     <Grid>
-            
+        <DockPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+            <Label DockPanel.Dock="Top" Content="Settings:"></Label>
+            <StackPanel DockPanel.Dock="Top" >
+                <CheckBox IsChecked="{Binding DoShowTimer}" Content="Show timer counting to shutdown"></CheckBox>
+            </StackPanel>
+            <Button DockPanel.Dock="Bottom, Right" Command="{Binding SaveSettingsCommand}" Content="Save settings"></Button>
+        </DockPanel>
     </Grid>
 </UserControl>

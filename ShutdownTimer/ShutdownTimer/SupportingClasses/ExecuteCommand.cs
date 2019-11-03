@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace ShutdownTimer
+namespace ShutdownTimer.SupportingClasses
 {
     /// <summary>
     /// Class to execute some commands with specified file in constructor.
