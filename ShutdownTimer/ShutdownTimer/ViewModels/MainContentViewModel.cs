@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Mvvm;
 
-namespace ShutdownTimer
+namespace ShutdownTimer.ViewModels
 {
-    public class MainWindowViewModel : BindableBase
+    public class MainContentViewModel : BindableBase
     {
         #region private variables
 
