@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ShutdownTimer"
         xmlns:viewModels="clr-namespace:ShutdownTimer.ViewModels"
         mc:Ignorable="d"
-        Title="Shutdown Timer" Height="150" Width="275">
+        Title="Shutdown Timer" Height="150" Width="339">
     <Window.DataContext>
         <viewModels:MainWindowViewModel></viewModels:MainWindowViewModel>
     </Window.DataContext>
@@ -16,7 +16,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <Grid Name ="SideBarGrid">
+        <Grid Column="0" Name ="SideBarGrid">
             <DockPanel HorizontalAlignment="Center" VerticalAlignment="Top">
                 <Button Command="{Binding ChangeMainContentCommand}" Width="25" Height="25" Content="S"></Button>
             </DockPanel>

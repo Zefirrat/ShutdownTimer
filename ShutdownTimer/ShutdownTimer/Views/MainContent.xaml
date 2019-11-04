@@ -44,9 +44,11 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding ShutdownCommand}" Content="Shutdown" Grid.Column="0" Width="100" Height="25"></Button>
-            <Button Command="{Binding AbortCommand}" Content="Abort" Grid.Column="1" Width="100" Height="25"></Button>
+            <Button Command="{Binding SleepCommand}" Content="Sleep" Grid.Column="1" Width="100" Height="25"></Button>
+            <Button Command="{Binding AbortCommand}" Content="Abort" Grid.Column="2" Width="100" Height="25"></Button>
         </Grid>
 <Grid Row="2">
     <Label Visibility="{Binding DoShowTimer, Converter={StaticResource  BooleanToVisibilityConverter}}" Content="{Binding TimerText}"></Label>
