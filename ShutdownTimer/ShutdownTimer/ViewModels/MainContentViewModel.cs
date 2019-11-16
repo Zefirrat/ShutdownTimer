@@ -52,12 +52,13 @@ namespace ShutdownTimer.ViewModels
         public string TimerText => $"Time before shutdown: {_timerToText}";
         private string _timerToText;
 
-        private void _startTimer()
+        private void _startTimer(Action timerEndAction)
         {
             _countDownTimer = new CountDownTimer();
             _countDownTimer.SetTime(_hour, _minute, _second);
             _countDownTimer.TimeChanged += _timerChanged;
             _countDownTimer.StepMs = 33;
+            _countDownTimer.CountDownFinished = timerEndAction;
             _countDownTimer.Start();
         }
 
@@ -92,26 +93,20 @@ namespace ShutdownTimer.ViewModels
         public void OnShutdownCommand()
         {
             ExecuteCommand executeCommand = new ExecuteCommand();
-            int value = _convertedAllToSeconds;
             string command = "shutdown -s -t 1";
-            _countDownTimer.CountDownFinished = () => executeCommand.Execute(command);
-            _startTimer();
+            _startTimer(() => executeCommand.Execute(command));
         }
 
         private void OnSleepCommand()
         {
             string command = $"rundll32.exe powrprof.dll,SetSuspendState 0,1,0";
-
             ExecuteCommand executeCommand = new ExecuteCommand();
-
-            _startTimer();
-            _countDownTimer.CountDownFinished = () => executeCommand.Execute(command);
+            _startTimer(() => executeCommand.Execute(command));
         }
 
         public void OnAbortCommand()
         {
             string command = "shutdown -a";
-
             ExecuteCommand executeCommand = new ExecuteCommand();
             executeCommand.Execute(command);
             _stopTimer();
