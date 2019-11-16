@@ -85,28 +85,27 @@ namespace ShutdownTimer.ViewModels
         private DelegateCommand _sleepDelegateCommand;
         public ICommand SleepCommand => _sleepDelegateCommand ?? new DelegateCommand(OnSleepCommand);
 
-        private void OnSleepCommand()
-        {
-            string command = $"rundll32.exe powrprof.dll,SetSuspendState 0,1,0";
-
-            ExecuteCommand executeCommand = new ExecuteCommand();
-            
-            _startTimer();
-            _countDownTimer.CountDownFinished = new Action(()=> executeCommand.Execute(command));
-        }
-
         #endregion
 
         #region OnCommand
 
         public void OnShutdownCommand()
         {
+            ExecuteCommand executeCommand = new ExecuteCommand();
             int value = _convertedAllToSeconds;
-            string command = "shutdown -s -t " + Convert.ToString((value > 0) ? value : 1);
+            string command = "shutdown -s -t 1";
+            _countDownTimer.CountDownFinished = () => executeCommand.Execute(command);
+            _startTimer();
+        }
+
+        private void OnSleepCommand()
+        {
+            string command = $"rundll32.exe powrprof.dll,SetSuspendState 0,1,0";
 
             ExecuteCommand executeCommand = new ExecuteCommand();
-            executeCommand.Execute(command);
+
             _startTimer();
+            _countDownTimer.CountDownFinished = () => executeCommand.Execute(command);
         }
 
         public void OnAbortCommand()
